@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:notify/UI/theme.dart';
+import 'package:notify/UI/widgets/button.dart';
 import 'package:notify/services/notification_services.dart';
 import 'package:notify/services/theme_services.dart';
 
@@ -24,19 +27,39 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: const Column(children: [
-        Text(
-          'Theme Data',
-          style: TextStyle(
-            fontSize: 30,
+      body: Column(children: [
+        Container(
+          margin: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      DateFormat.yMMMMd().format(DateTime.now()),
+                      style: subHeadingStyle,
+                    ),
+                    Text(
+                      "Today",
+                      style: headingStyle,
+                    )
+                  ],
+                ),
+              ),
+              MyButton(label: " + Add Task", onTap: () => null)
+            ],
           ),
-        ),
+        )
       ]),
     );
   }
 
   _appBar() {
     return AppBar(
+      elevation: 0,
+      backgroundColor: context.theme.backgroundColor,
       leading: GestureDetector(
         onTap: () {
           ThemeServices().switchTheme();
@@ -48,15 +71,14 @@ class _HomePageState extends State<HomePage> {
 
           notifyHelper.scheduleNotification();
         },
-        child: const Icon(
-          Icons.nightlight_round,
-          size: 20,
-        ),
+        child: Icon(
+            Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
+            size: 20,
+            color: Get.isDarkMode ? Colors.white : Colors.black),
       ),
       actions: const [
-        Icon(
-          Icons.person,
-          size: 20,
+        CircleAvatar(
+          backgroundImage: AssetImage("images/profile.png"),
         ),
         SizedBox(
           width: 20,
