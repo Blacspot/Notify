@@ -9,7 +9,7 @@ const Color pinkClr = Color(0xFFff4667);
 const Color white = Color(0xFFFFFFFF);
 const primaryClr = bluishClr;
 const Color darkGreyClr = Color(0xFF121212);
-Color darkHeaderClr = Color(0xFF424242);
+Color darkHeaderClr = const Color(0xFF424242);
 
 class Themes {
   static final light = ThemeData(

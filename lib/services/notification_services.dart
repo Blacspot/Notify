@@ -34,10 +34,10 @@ class NotifyHelper {
   displayNotification({required String title, required String body}) async {
     print("doing test");
 
-    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
         'your channel id', 'your channel name',
         importance: Importance.max, priority: Priority.high);
-    var iOSPlatformChannelSpecifics = new DarwinNotificationDetails();
+    var iOSPlatformChannelSpecifics = const DarwinNotificationDetails();
     var platformChannelSpecifics = new NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
@@ -79,7 +79,7 @@ class NotifyHelper {
 
   Future onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) async {
-    Get.dialog(Text("Welcome to flutter"));
+    Get.dialog(const Text("Welcome to flutter"));
   }
 
   void onDidReceiveNotificationResponse(
