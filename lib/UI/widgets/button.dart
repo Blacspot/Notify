@@ -1,29 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:notify/UI/theme.dart';
 
-class MyButton extends StatelessWidget {
-  final String label;
-  final Function onTap;
-  const MyButton({Key? key, required this.label, required this.onTap})
-      : super(key: key);
+class CustomButton extends StatelessWidget {
+  const CustomButton({
+    required this.title,
+    super.key,
+  });
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () => onTap,
-        child: Container(
-            height: 60,
-            width: 120,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: primaryClr),
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                label,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            )));
+    return Container(
+      padding: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+      ),
+      height: 70,
+      decoration: BoxDecoration(
+          color: Colors.blue,
+          gradient: const LinearGradient(colors: [
+            Color(0xFFE26C5C),
+            Color(0xFF1041F9),
+          ]),
+          borderRadius: BorderRadius.circular(25)),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+          ),
+        ),
+        Icon(
+          Icons.arrow_forward_outlined,
+          color: Colors.white,
+        )
+      ]),
+    );
   }
 }

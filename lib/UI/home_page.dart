@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:notify/UI/add_task_bar.dart';
+import 'package:notify/UI/addtaskbar.dart';
 import 'package:notify/UI/theme.dart';
-import 'package:notify/UI/widgets/button.dart';
 import 'package:notify/services/notification_services.dart';
 import 'package:notify/services/theme_services.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:notify/UI/widgets/button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,12 +31,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: Column(
-        children: [
-          _addTaskBar(),
-          _addDateBar(),
-        ],
-      ),
+      body: SafeArea(
+          child: Container(
+        padding: const EdgeInsets.only(
+          left: 50,
+          right: 50,
+          bottom: 30,
+        ),
+        child: Column(
+          children: [
+            _addTaskBar(),
+            _addDateBar(),
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/addtaskbar');
+              },
+              child: const CustomButton(
+                title: "Add Task",
+              ),
+            ),
+          ],
+        ),
+      )),
     );
   }
 
@@ -92,13 +109,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          MyButton(
-            label: "+ Add Task",
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => AddTaskPage())));
-            },
-          )
         ],
       ),
     );
