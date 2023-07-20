@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
           bottom: 30,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _addTaskBar(),
             _addDateBar(),
