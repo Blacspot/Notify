@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:notify/UI/addtaskbar.dart';
 import 'package:notify/UI/theme.dart';
 import 'package:notify/services/notification_services.dart';
 import 'package:notify/services/theme_services.dart';
@@ -44,6 +43,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             _addTaskBar(),
             _addDateBar(),
+            _showTasks(),
             const Spacer(),
             GestureDetector(
               onTap: () {
@@ -57,6 +57,21 @@ class _HomePageState extends State<HomePage> {
         ),
       )),
     );
+  }
+
+  _showTasks() {
+    return Expanded(child: Obx(() {
+      return ListView.builder(
+          itemCount: _taskController.taskList.length,
+          itemBuilder: (_, context) {
+            print(_taskController.taskList.length);
+            return Container(
+              width: 100,
+              height: 50,
+              color: Colors.green,
+            );
+          });
+    }));
   }
 
   _addDateBar() {
@@ -146,4 +161,8 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+}
+
+class _taskController {
+  static var taskList;
 }

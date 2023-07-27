@@ -174,13 +174,24 @@ class _AddTaskPageState extends State<AddTaskPage> {
               SizedBox(
                 height: 24,
               ),
-              ElevatedButton(
-                style: buttonPrimary,
-                onPressed: () {
-                  OnTap:
-                  () => _validateDate();
+              GestureDetector(
+                // When the child is tapped, show a snackbar.
+                onTap: () /* => _validateDate()*/
+
+                    {
+                  const snackBar = const SnackBar(content: Text('Tap'));
+
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Text('Create Task'),
+                // The custom button
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text('Create Task'),
+                ),
               ),
             ],
           ),
